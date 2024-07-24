@@ -1,0 +1,22 @@
+﻿@page "/categorias"
+
+@using Interfaces
+@inject ICategoriaRepositorio MyCategoriaRepositorio
+
+<h1 class="text-center">Categorias</h1>
+
+
+<div class="card">
+    <div class="card-header">
+        <div class="row">
+            <div class="col-7">
+                <h4 class="card-title text-dark">Lista de Categorias</h4>
+                <div class="col-3 offset-2">
+                    <NavLink href="crear-categoria" class="btn btn-primary"><i class="bi bi-plus-circle-fill"></i>&nbsp; Nueva Categoria</NavLink>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="accordion-body"></div>
+</div>
