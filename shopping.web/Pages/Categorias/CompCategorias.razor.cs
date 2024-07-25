@@ -21,5 +21,7 @@ namespace shopping.web.Pages.Categorias
             }
             
         }
+
+        private async Task ManejadorOnBorrar(int categoriaId) { }
     }
 }

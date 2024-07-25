@@ -24,11 +24,22 @@ namespace shopping.web.Repositorios
             {
                 if (categoriaId == categoriaDto.CategoriaId)
                 {
-                    Categoria Categoria = categoriaDto;
+                    Categoria Categoria = await _bd.Categoria.FindAsync(categoriaId);
+                    
+                    Categoria.Descripcion = categoriaDto.Descripcion;
+                    Categoria.NombreCategoria = categoriaDto.NombreCategoria;
                     Categoria.FechaActualizacion = DateTime.Now;
+
                     _bd.Categoria.Update(Categoria);
                     await _bd.SaveChangesAsync();
                     return Categoria;
+
+
+                    //Categoria Categoria = categoriaDto;
+                    //Categoria.FechaActualizacion = DateTime.Now;
+                    //var CategoriaActualizada = _bd.Categoria.Update(Categoria);
+                    //await _bd.SaveChangesAsync();
+                    //return Categoria;
 
                 }
                 else
@@ -86,6 +97,11 @@ namespace shopping.web.Repositorios
         public async Task<CategoriaDto> GetCategoria(int categoriaId)
         {
             Categoria Categoria = await _bd.Categoria.FirstOrDefaultAsync(c => c.CategoriaId == categoriaId);
+
+            if (Categoria == null)
+            {
+                return null;
+            }
             return Categoria;
         }
 
@@ -96,7 +112,12 @@ namespace shopping.web.Repositorios
 
         public async Task<CategoriaDto> NombreCategoriaExiste(string nombreCategoria)
         {
-            Categoria Categoria = await _bd.Categoria.FirstOrDefaultAsync(c => c.NombreCategoria.ToLower() == nombreCategoria.ToLower());
+            Categoria Categoria = Categoria = await _bd.Categoria.FirstOrDefaultAsync(c => c.NombreCategoria.ToLower() == nombreCategoria.ToLower());
+
+            if (Categoria == null)
+            {
+                return null;
+            }
             return Categoria;
         }
     }
