@@ -1,0 +1,38 @@
+﻿@page "/java-script"
+
+@* Permite la comunicacion entre Blazor y JavaScript *@
+@inject IJSRuntime JsRuntime 
+
+
+<h3>Blazor & JavaScript</h3>
+
+<div class="row mt-4">
+    <div class="col-4">
+        <button class="btn btn-secondary" @onclick="( ()=> DemoConfirmacion(MensajeConfirmacion))">Demo Botón Confirmar</button>
+    </div>
+</div>
+
+<div class="row mt-4">
+    <div class="col-4">
+        <button class="btn btn-success" @onclick="DemoSuccess">Demo Toastr Success</button>
+        <button class="btn btn-danger" @onclick="DemoError">Demo Toastr Error</button>
+    </div>
+</div>
+
+<div class="row mt-4">
+    <div class="col-4">
+        <button class="btn btn-success" @onclick="DemoSuccessSwal">Demo Success Swal</button>
+        <button class="btn btn-danger" @onclick="DemoErrorSwal">Demo Error Swal</button>
+    </div>
+</div>
+
+<div class="row">
+   @if (ConfirmarResultado)
+    {
+        <p>Confirmacion hecha!</p>
+    }
+    else
+    {
+        <p>Confirmacion pendiente</p>
+    }
+</div>
