@@ -1,0 +1,154 @@
+﻿@page "/crear-articulo"
+
+@using Interfaces
+@inject IArticuloRepositorio MyArticuloRepositorio
+@inject NavigationManager NavigationManager
+@inject IJSRuntime JsRuntime
+
+<h1 class="text-center">Crear Articulo</h1>
+
+<div class="card">
+
+    <div class="card-header">
+        <div class="row">
+            <div class="col-7">
+                <h2 class="text-dark">Nuevo Articulo</h2>
+            </div>
+        </div>
+    </div>
+
+    <div class="card-body">
+        <EditForm Model="ArticuloDto" OnValidSubmit="@( () => ManejadorOnCrearPropiedad())">
+            <DataAnnotationsValidator></DataAnnotationsValidator>
+            <ValidationSummary></ValidationSummary>
+
+            <div class="container">
+
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-2">
+                            <label>Nombre: </label>
+                        </div>
+                        <div class="col-6">
+                            <InputText @bind-Value="ArticuloDto.Nombre" class="form-control" placeholder="Ingresa el nombre del articulo"></InputText>
+                            <ValidationMessage For="() => ArticuloDto.Nombre"></ValidationMessage>
+                        </div>
+                    </div>
+                </div>
+
+                <br />
+
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-2">
+                            <label>Descripcion: </label>
+                        </div>
+                        <div class="col-6">
+                            <InputText @bind-Value="ArticuloDto.Descripcion" class="form-control" placeholder="Ingresa la descripcion"></InputText>
+                            <ValidationMessage For="() => ArticuloDto.Descripcion"></ValidationMessage>
+                        </div>
+                    </div>
+                </div>
+
+                <br />
+
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-2">
+                            <label>Caracteristicas: </label>
+                        </div>
+                        <div class="col-6">
+                            <InputText @bind-Value="ArticuloDto.Caracteristicas" class="form-control" placeholder="Ingresa las caracteristicas"></InputText>
+                            <ValidationMessage For="() => ArticuloDto.Caracteristicas"></ValidationMessage>
+                        </div>
+                    </div>
+                </div>
+
+                <br />
+
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-2">
+                            <label>Contacto: </label>
+                        </div>
+                        <div class="col-6">
+                            <InputText @bind-Value="ArticuloDto.Contacto" class="form-control" placeholder="Ingresa el contacto"></InputText>
+                            <ValidationMessage For="() => ArticuloDto.Contacto"></ValidationMessage>
+                        </div>
+                    </div>
+                </div>
+
+                <br />
+
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-2">
+                            <label>Telefono: </label>
+                        </div>
+                        <div class="col-6">
+                            <InputText @bind-Value="ArticuloDto.ContactoTelefono" class="form-control" placeholder="Ingresa el telefono del contacto"></InputText>
+                            <ValidationMessage For="() => ArticuloDto.ContactoTelefono"></ValidationMessage>
+                        </div>
+                    </div>
+                </div>
+
+                <br />
+
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-2">
+                            <label>Precio: </label>
+                        </div>
+                        <div class="col-6">
+                            <InputNumber @bind-Value="ArticuloDto.Precio" class="form-control" placeholder="Ingresa el precio"></InputNumber>
+                            <ValidationMessage For="() => ArticuloDto.Precio"></ValidationMessage>
+                        </div>
+                    </div>
+                </div>
+
+                <br />
+
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-2">
+                            <label>Categoria: </label>
+                        </div>
+                        <div class="col-6">
+                            <InputNumber @bind-Value="ArticuloDto.CategoriaId" class="form-control" placeholder="Ingresa la categoria"></InputNumber>
+                            <ValidationMessage For="() => ArticuloDto.CategoriaId"></ValidationMessage>
+                        </div>
+                    </div>
+                </div>
+
+                <br />
+
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-2">
+                            <label>Activo: </label>
+                        </div>
+                        <div class="col-6">
+                            <InputCheckbox @bind-Value="ArticuloDto.Activo" class="form-control" placeholder="Activo?"></InputCheckbox>
+                            <ValidationMessage For="() => ArticuloDto.Activo"></ValidationMessage>
+                        </div>
+                    </div>
+                </div>
+
+                <br />
+
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-2">
+                            <button type="submit" class="btn btn-success"><i class="bi bi-gear-fill"></i>&nbsp; Guardar Articulo</button>
+                        </div>
+                        <div class="col-6">
+                            <NavLink href="propiedades" class="btn btn-secondary"><i class="bi bi-arrow-left-circle-fill"></i>&nbsp; Volver</NavLink>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </EditForm>
+    </div>
+
+</div>

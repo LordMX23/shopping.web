@@ -15,6 +15,8 @@ namespace shopping.web.Modelos
         public DateTime FechaCreacion { get; set; } = DateTime.Now;
         public DateTime FechaActualizacion { get; set; }
 
+        public virtual ICollection<Articulo> Articulo { get; set; }
+
         public static implicit operator CategoriaDto(Categoria dto)
         {
             CategoriaDto CategoriaDto = new CategoriaDto()
