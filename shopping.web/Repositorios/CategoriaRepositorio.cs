@@ -105,9 +105,22 @@ namespace shopping.web.Repositorios
             return Categoria;
         }
 
-        public Task<IEnumerable<CategoriaDto>> GetDropDownCategorias()
+        public async Task<IEnumerable<DropDownCategoriaDto>> GetDropDownCategorias()
         {
-            throw new NotImplementedException();
+            IEnumerable<Categoria> Categoria = _bd.Categoria;
+
+            List<DropDownCategoriaDto> DDCategoriaDtos = new List<DropDownCategoriaDto>();
+            foreach (Categoria item in Categoria)
+            {
+                DropDownCategoriaDto MiCategoria = new DropDownCategoriaDto()
+                {
+                    CategoriaId = item.CategoriaId,
+                    NombreCategoria = item.NombreCategoria,
+                };
+                DDCategoriaDtos.Add(MiCategoria);
+            }
+
+            return DDCategoriaDtos as IEnumerable<DropDownCategoriaDto>;
         }
 
         public async Task<CategoriaDto> NombreCategoriaExiste(string nombreCategoria)

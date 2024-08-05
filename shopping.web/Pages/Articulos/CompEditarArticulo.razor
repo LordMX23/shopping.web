@@ -1,6 +1,5 @@
-﻿@page "/crear-articulo"
-
-@using Interfaces
+﻿@page "/editar-articulo/{Id:int}"
+@using shopping.web.Interfaces
 @using shopping.web.Servicios
 @inject IArticuloRepositorio MyArticuloRepositorio
 @inject ICategoriaRepositorio MyCategoriaReositorio
@@ -9,20 +8,20 @@
 @inject NavigationManager NavigationManager
 @inject IJSRuntime JsRuntime
 
-<h1 class="text-center">Crear Articulo</h1>
+<h1 class="text-center">Editar Articulo</h1>
 
 <div class="card">
 
     <div class="card-header">
         <div class="row">
             <div class="col-7">
-                <h2 class="text-dark">Nuevo Articulo</h2>
+                <h2 class="text-dark">Editar Articulo</h2>
             </div>
         </div>
     </div>
 
     <div class="card-body">
-        <EditForm Model="ArticuloDto" OnValidSubmit="@( () => ManejadorOnCrearArticulo())">
+        <EditForm Model="ArticuloDto" OnValidSubmit="@( () => ManejadorOnEditarArticulo())">
             <DataAnnotationsValidator></DataAnnotationsValidator>
             <ValidationSummary></ValidationSummary>
 
@@ -172,7 +171,7 @@
                             Serial++;
                         }
                     </div>
-                    
+
                 </div>
 
                 <br />
@@ -180,7 +179,7 @@
                 <div class="form-group">
                     <div class="row">
                         <div class="col-2">
-                            <button type="submit" class="btn btn-success"><i class="bi bi-gear-fill"></i>&nbsp; Guardar Articulo</button>
+                            <button type="submit" class="btn btn-success"><i class="bi bi-gear-fill"></i>&nbsp; Editar Articulo</button>
                         </div>
                         <div class="col-6">
                             <NavLink href="articulos" class="btn btn-secondary"><i class="bi bi-arrow-left-circle-fill"></i>&nbsp; Volver</NavLink>

@@ -8,6 +8,7 @@ using shopping.web.Areas.Identity;
 using shopping.web.Data;
 using shopping.web.Interfaces;
 using shopping.web.Repositorios;
+using shopping.web.Servicios;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -25,6 +26,8 @@ builder.Services.AddScoped<AuthenticationStateProvider, RevalidatingIdentityAuth
 // Agregar Servicios
 builder.Services.AddScoped<ICategoriaRepositorio, CategoriaRepositorio>();
 builder.Services.AddScoped<IArticuloRepositorio, ArticuloRepositorio>();
+builder.Services.AddScoped<IImagenArticuloRepositorio, ImagenArticuloRepositorio>();
+builder.Services.AddScoped<ISubidaArchivo, SubidaArchivo>();
 
 var app = builder.Build();
 

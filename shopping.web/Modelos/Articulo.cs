@@ -1,4 +1,5 @@
-﻿using shopping.web.DTOs;
+﻿using Microsoft.JSInterop.Infrastructure;
+using shopping.web.DTOs;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -29,10 +30,25 @@ namespace shopping.web.Modelos
         [ForeignKey("CategoriaId")]
         public virtual Categoria Categoria { get; set; }
 
+        // Relacion cin ImagenArticulo
+        public virtual ICollection<ImagenArticulo> ImagenArticulo { get; set; }
+
 
 
         public static implicit operator ArticuloDto(Articulo dto)
         {
+            if (dto == null) return null;
+
+            List<string> UrlImagenes = new List<string>();
+
+            if (dto.ImagenArticulo != null && dto.ImagenArticulo.Count > 0)
+            {
+                foreach (var item in dto.ImagenArticulo)
+                {
+                    UrlImagenes.Add(item.UrlImagenArticulo);
+                }
+            }
+
             ArticuloDto Articulo = new ArticuloDto()
             {
                 ArticuloId = dto.ArticuloId,
@@ -44,7 +60,9 @@ namespace shopping.web.Modelos
                 Precio = dto.Precio,
                 Activo = dto.Activo,
                 CategoriaId = dto.CategoriaId,
+                UrlImagenes = UrlImagenes,
             };
+
 
             return Articulo;
         }

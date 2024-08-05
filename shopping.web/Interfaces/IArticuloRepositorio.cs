@@ -11,6 +11,6 @@ namespace shopping.web.Interfaces
 
         public Task<IEnumerable<ArticuloDto>> GetAllArticulo();
         public Task<ArticuloDto> GetArticulo(int articuloId);
-        //public Task<ArticuloDto> NombreArticuloExiste(string nombreArticulo);
+        public Task<ArticuloDto> NombreArticuloExiste(string nombreArticulo);
     }
 }

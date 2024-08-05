@@ -14,5 +14,6 @@ namespace shopping.web.Data
         // Agregar los modelos
         public DbSet<Categoria> Categoria { get; set; }
         public DbSet<Articulo> Articulo { get; set; }
+        public DbSet<ImagenArticulo> ImagenArticulo { get; set; }
     }
 }

@@ -71,8 +71,27 @@ namespace shopping.web.Repositorios
 
         public async Task<IEnumerable<ArticuloDto>> GetAllArticulo()
         {
-            IEnumerable<Articulo> Articulo = _bd.Articulo;
+            //IEnumerable<Articulo> Articulo = _bd.Articulo;
+            //List<ArticuloDto> ArticuloDtos = new List<ArticuloDto>();
+            //foreach (Articulo item in Articulo)
+            //{
+            //    ArticuloDto MiArticulo = new ArticuloDto()
+            //    {
+            //        ArticuloId = item.ArticuloId,
+            //        Nombre = item.Nombre,
+            //        Descripcion = item.Descripcion,
+            //        Caracteristicas = item.Caracteristicas,
+            //        Contacto = item.Contacto,
+            //        ContactoTelefono = item.ContactoTelefono,
+            //        Precio = item.Precio,
+            //        Activo = item.Activo,
+            //        CategoriaId = item.CategoriaId,
+            //    };
+            //    ArticuloDtos.Add(MiArticulo);
+            //}
+            //return ArticuloDtos as IEnumerable<ArticuloDto>;
 
+            IEnumerable<Articulo> Articulo = _bd.Articulo.Include(x => x.ImagenArticulo);
             List<ArticuloDto> ArticuloDtos = new List<ArticuloDto>();
             foreach (Articulo item in Articulo)
             {
@@ -90,19 +109,32 @@ namespace shopping.web.Repositorios
                 };
                 ArticuloDtos.Add(MiArticulo);
             }
-
             return ArticuloDtos as IEnumerable<ArticuloDto>;
         }
 
         public async Task<ArticuloDto> GetArticulo(int articuloId)
         {
-            Articulo Articulo = await _bd.Articulo.FirstOrDefaultAsync(c => c.ArticuloId == articuloId);
+            Articulo Articulo = await _bd.Articulo.Include(x => x.ImagenArticulo).FirstOrDefaultAsync(c => c.ArticuloId == articuloId);
 
             if (Articulo == null)
             {
                 return null;
             }
             return Articulo;
+        }
+
+        public async Task<ArticuloDto> NombreArticuloExiste(string nombreArticulo)
+        {
+            try
+            {
+                ArticuloDto Articulo = await _bd.Articulo.FirstOrDefaultAsync(c => c.Nombre.ToLower() == nombreArticulo.ToLower());
+                return Articulo;
+            }
+            catch (Exception ex)
+            {
+
+                return null;
+            }
         }
     }
 }

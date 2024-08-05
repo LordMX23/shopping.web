@@ -28,5 +28,16 @@ namespace shopping.web.Modelos
             };
             return CategoriaDto;
         }
+
+        public static implicit operator DropDownCategoriaDto(Categoria dto)
+        {
+            DropDownCategoriaDto CategoriaDto = new DropDownCategoriaDto()
+            {
+                CategoriaId = dto.CategoriaId,
+                NombreCategoria = dto.NombreCategoria,
+
+            };
+            return CategoriaDto;
+        }
     }
 }

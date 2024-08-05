@@ -33,7 +33,8 @@ namespace shopping.web.DTOs
         // Relacion con Modelo Categoria
         public int CategoriaId { get; set; }
 
-
+        public virtual ICollection<ImagenArticulo> ImagenArticulo { get; set; }
+        public List<string> UrlImagenes { get; set; }
 
 
         public static implicit operator Articulo(ArticuloDto dto)

@@ -12,7 +12,7 @@ namespace shopping.web.Interfaces
         public Task<IEnumerable<CategoriaDto>> GetAllCategorias();
         public Task<CategoriaDto> GetCategoria(int categoriaId);
         public Task<CategoriaDto> NombreCategoriaExiste(string nombreCategoria);
-        public Task<IEnumerable<CategoriaDto>> GetDropDownCategorias();
+        public Task<IEnumerable<DropDownCategoriaDto>> GetDropDownCategorias();
 
     }
 }
