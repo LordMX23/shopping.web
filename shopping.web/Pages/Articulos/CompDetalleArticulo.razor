@@ -1,0 +1,47 @@
+﻿@page "/detalle-articulo/{Id:int}"
+@using shopping.web.Interfaces
+
+@inject IArticuloRepositorio MyArticuloRepositorio
+
+
+<h1 class="text-center">Detalle del articulos</h1>
+
+
+
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-header" style="background-color:lightgray">
+                <h2>@ArticuloDtos.Nombre</h2>
+            </div>
+            <div class="card-body">
+
+                @if (ArticuloDtos.UrlImagenes != null)
+                {
+                    <div class="row">
+                        @foreach (var imagen in ArticuloDtos.UrlImagenes)
+                        {
+                            <div class="col-4">
+                                <img src="@imagen" class="img-fluid" />
+                            </div>
+                        }
+                    </div>
+                    
+                }
+                
+                <ul class="list-group">
+                    <li class="list-group-item"><strong>Descripción: </strong>@ArticuloDtos.Descripcion</li>
+                    <li class="list-group-item"><strong>Caracteristicas: </strong>@ArticuloDtos.Caracteristicas</li>
+                    <li class="list-group-item"><strong>Precio: </strong>@ArticuloDtos.Precio</li>
+                    <li class="list-group-item"><strong>Vendedor: </strong>@ArticuloDtos.Contacto</li>
+                    <li class="list-group-item"><strong>Telefono: </strong>@ArticuloDtos.ContactoTelefono</li>
+                </ul>
+
+
+            </div>
+            <div class="card-footer" style="background-color:lightgray">
+                    <NavLink href="/" class="btn btn-secondary"><i class="bi bi-arrow-left-circle-fill"></i> Volver </NavLink>
+            </div>
+        </div>
+    </div>
+</div>

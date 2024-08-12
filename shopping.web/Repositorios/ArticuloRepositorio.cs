@@ -23,6 +23,7 @@ namespace shopping.web.Repositorios
                 {
                     Articulo Articulo = await _bd.Articulo.FindAsync(articuloId);
 
+                    Articulo.CategoriaId = articuloDto.CategoriaId;
                     Articulo.Nombre = articuloDto.Nombre;
                     Articulo.Descripcion = articuloDto.Descripcion;
                     Articulo.Caracteristicas = articuloDto.Caracteristicas;
@@ -54,6 +55,9 @@ namespace shopping.web.Repositorios
             Articulo Articulo = await _bd.Articulo.FindAsync(articuloId);
             if (Articulo != null)
             {
+                var TodasImagenes = await _bd.ImagenArticulo.Where(x => x.ImagenArticuloId == articuloId).ToListAsync();
+                _bd.ImagenArticulo.RemoveRange(TodasImagenes);
+
                 _bd.Articulo.Remove(Articulo);
                 await _bd.SaveChangesAsync();
             }
@@ -91,8 +95,12 @@ namespace shopping.web.Repositorios
             //}
             //return ArticuloDtos as IEnumerable<ArticuloDto>;
 
-            IEnumerable<Articulo> Articulo = _bd.Articulo.Include(x => x.ImagenArticulo);
+            IEnumerable<Articulo> Articulo = _bd.Articulo
+                .Include(x => x.ImagenArticulo)
+                .Include(c => c.Categoria);
+            
             List<ArticuloDto> ArticuloDtos = new List<ArticuloDto>();
+
             foreach (Articulo item in Articulo)
             {
                 ArticuloDto MiArticulo = new ArticuloDto()
@@ -106,6 +114,8 @@ namespace shopping.web.Repositorios
                     Precio = item.Precio,
                     Activo = item.Activo,
                     CategoriaId = item.CategoriaId,
+                    Categoria = item.Categoria,
+                    ImagenArticulo = item.ImagenArticulo,
                 };
                 ArticuloDtos.Add(MiArticulo);
             }

@@ -59,7 +59,9 @@ namespace shopping.web.Modelos
                 ContactoTelefono = dto.ContactoTelefono,
                 Precio = dto.Precio,
                 Activo = dto.Activo,
+                Categoria = dto.Categoria,
                 CategoriaId = dto.CategoriaId,
+                ImagenArticulo = dto.ImagenArticulo,
                 UrlImagenes = UrlImagenes,
             };
 

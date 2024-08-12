@@ -30,10 +30,10 @@
 
                 <div class="form-group">
                     <div class="row">
-                        <div class="col-2">
+                        <div class="col-lg-2 col-sm-12">
                             <label>Categoria: </label>
                         </div>
-                        <div class="col-6">
+                        <div class="col-lg-10 col-sm-12">
                             <InputSelect @bind-Value="ArticuloDto.CategoriaId" class="form-control">
                                 @foreach (var Categoria in DropDownCategoriaDtos)
                                 {
@@ -48,10 +48,10 @@
 
                 <div class="form-group">
                     <div class="row">
-                        <div class="col-2">
+                        <div class="col-lg-2 col-sm-12">
                             <label>Nombre: </label>
                         </div>
-                        <div class="col-6">
+                        <div class="col-lg-10 col-sm-12">
                             <InputText @bind-Value="ArticuloDto.Nombre" class="form-control" placeholder="Ingresa el nombre del articulo"></InputText>
                             <ValidationMessage For="() => ArticuloDto.Nombre"></ValidationMessage>
                         </div>
@@ -62,10 +62,10 @@
 
                 <div class="form-group">
                     <div class="row">
-                        <div class="col-2">
+                        <div class="col-lg-2 col-sm-12">
                             <label>Descripcion: </label>
                         </div>
-                        <div class="col-6">
+                        <div class="col-lg-10 col-sm-12">
                             <InputText @bind-Value="ArticuloDto.Descripcion" class="form-control" placeholder="Ingresa la descripcion"></InputText>
                             <ValidationMessage For="() => ArticuloDto.Descripcion"></ValidationMessage>
                         </div>
@@ -76,10 +76,10 @@
 
                 <div class="form-group">
                     <div class="row">
-                        <div class="col-2">
+                        <div class="col-lg-2 col-sm-12">
                             <label>Caracteristicas: </label>
                         </div>
-                        <div class="col-6">
+                        <div class="col-lg-10 col-sm-12">
                             <InputText @bind-Value="ArticuloDto.Caracteristicas" class="form-control" placeholder="Ingresa las caracteristicas"></InputText>
                             <ValidationMessage For="() => ArticuloDto.Caracteristicas"></ValidationMessage>
                         </div>
@@ -90,10 +90,10 @@
 
                 <div class="form-group">
                     <div class="row">
-                        <div class="col-2">
+                        <div class="col-lg-2 col-sm-12">
                             <label>Precio: </label>
                         </div>
-                        <div class="col-6">
+                        <div class="col-lg-10 col-sm-12">
                             <InputNumber @bind-Value="ArticuloDto.Precio" class="form-control" placeholder="Ingresa el precio"></InputNumber>
                             <ValidationMessage For="() => ArticuloDto.Precio"></ValidationMessage>
                         </div>
@@ -104,10 +104,10 @@
 
                 <div class="form-group">
                     <div class="row">
-                        <div class="col-2">
+                        <div class="col-lg-2 col-sm-12">
                             <label>Activo: </label>
                         </div>
-                        <div class="col-6">
+                        <div class="col-lg-10 col-sm-12">
                             <InputCheckbox @bind-Value="ArticuloDto.Activo"></InputCheckbox>
                             <ValidationMessage For="() => ArticuloDto.Activo"></ValidationMessage>
                         </div>
@@ -118,10 +118,10 @@
 
                 <div class="form-group">
                     <div class="row">
-                        <div class="col-2">
+                        <div class="col-lg-2 col-sm-12">
                             <label>Contacto: </label>
                         </div>
-                        <div class="col-6">
+                        <div class="col-lg-10 col-sm-12">
                             <InputText @bind-Value="ArticuloDto.Contacto" class="form-control" placeholder="Ingresa el contacto"></InputText>
                             <ValidationMessage For="() => ArticuloDto.Contacto"></ValidationMessage>
                         </div>
@@ -132,10 +132,10 @@
 
                 <div class="form-group">
                     <div class="row">
-                        <div class="col-2">
+                        <div class="col-lg-2 col-sm-12">
                             <label>Telefono: </label>
                         </div>
-                        <div class="col-6">
+                        <div class="col-lg-10 col-sm-12">
                             <InputText @bind-Value="ArticuloDto.ContactoTelefono" class="form-control" placeholder="Ingresa el telefono del contacto"></InputText>
                             <ValidationMessage For="() => ArticuloDto.ContactoTelefono"></ValidationMessage>
                         </div>
@@ -179,10 +179,10 @@
 
                 <div class="form-group">
                     <div class="row">
-                        <div class="col-2">
+                        <div class="col-sm-5 col-lg-2">
                             <button type="submit" class="btn btn-success"><i class="bi bi-gear-fill"></i>&nbsp; Guardar Articulo</button>
                         </div>
-                        <div class="col-6">
+                        <div class="col-sm-5 col-lg-6">
                             <NavLink href="articulos" class="btn btn-secondary"><i class="bi bi-arrow-left-circle-fill"></i>&nbsp; Volver</NavLink>
                         </div>
                     </div>

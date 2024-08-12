@@ -31,8 +31,10 @@ namespace shopping.web.DTOs
         public bool Activo { get; set; }
 
         // Relacion con Modelo Categoria
-        public int CategoriaId { get; set; }
+        public virtual Categoria Categoria { get; set; }
+        public int CategoriaId { get; set; }        
 
+        // Relacion con Modelo ImagenArticulo
         public virtual ICollection<ImagenArticulo> ImagenArticulo { get; set; }
         public List<string> UrlImagenes { get; set; }
 

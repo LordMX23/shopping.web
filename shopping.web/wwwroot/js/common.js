@@ -16,3 +16,11 @@ window.ShowSwal = (type, message) => {
         Swal.fire('Error Notification', message, 'error');
     }
 }
+
+function MostrarModalConfirmacionBorrado() {
+    $('#ModalConfirmacionBorrado').modal('show');
+}
+
+function OcultarModalConfirmacionBorrado() {
+    $('#ModalConfirmacionBorrado').modal('hide');
+}

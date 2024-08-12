@@ -2,8 +2,6 @@ using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Forms;
 using shopping.web.DTOs;
 using shopping.web.Helpers;
-using shopping.web.Interfaces;
-using shopping.web.Repositorios;
 
 namespace shopping.web.Pages.Articulos
 {
@@ -11,14 +9,12 @@ namespace shopping.web.Pages.Articulos
     {
         [Parameter]
         public int? Id { get; set; }
-
-        // Definimos el modelo
-        private ArticuloDto ArticuloDto { get; set; } = new ArticuloDto();
+        private ArticuloDto ArticuloDto { get; set; } = new ArticuloDto(); // Definimos el modelo
+        private DropDownCategoriaDto categoriaSeleccionada = new DropDownCategoriaDto();
         private bool EstaIniciadoSubidaImagen { get; set; } = false;
-        // Para obtener la lista de categorias
-        private IEnumerable<DropDownCategoriaDto> DropDownCategoriaDtos { get; set; } = new List<DropDownCategoriaDto>();
-        private List<string> NombresImagenesBorradas { get; set; } = new List<string>();
+        private IEnumerable<DropDownCategoriaDto> DropDownCategoriaDtos { get; set; } = new List<DropDownCategoriaDto>();   // Para obtener la lista de categorias
         private ImagenArticuloDto ImagenDto { get; set; } = new ImagenArticuloDto();
+        private List<string> NombresImagenesBorradas { get; set; } = new List<string>();
 
         protected override async Task OnInitializedAsync()
         {
@@ -31,23 +27,26 @@ namespace shopping.web.Pages.Articulos
                 {
                     ArticuloDto.UrlImagenes = ArticuloDto.ImagenArticulo.Select(u => u.UrlImagenArticulo).ToList();
                 }
+                categoriaSeleccionada.CategoriaId = ArticuloDto.CategoriaId;
             }
         }
+
+
         private async Task ManejadorOnEditarArticulo()
         {
             //Se obtiene el Id de la categoría, es decir CategoriaId del DropDown
-            //ArticuloDto.CategoriaId = categoriaSeleccionada.Id;
+            ArticuloDto.CategoriaId = categoriaSeleccionada.CategoriaId;
 
             // Actualiza el articulo con imagenes
             var ResultadoActualizarArticulo = await MyArticuloRepositorio.ActualizarArticulo(ArticuloDto.ArticuloId, ArticuloDto);
 
-            if((ArticuloDto.UrlImagenes != null && ArticuloDto.UrlImagenes.Any()) || (NombresImagenesBorradas != null && NombresImagenesBorradas.Any()))
+            if ((ArticuloDto.UrlImagenes != null && ArticuloDto.UrlImagenes.Any()) || (NombresImagenesBorradas != null && NombresImagenesBorradas.Any()))
             {
-                if(NombresImagenesBorradas != null && NombresImagenesBorradas.Any())
+                if (NombresImagenesBorradas != null && NombresImagenesBorradas.Any())
                 {
                     foreach (var nombreImagenBorrada in NombresImagenesBorradas)
                     {
-                        var NombreImagen = nombreImagenBorrada.Replace($"{NavigationManager.BaseUri}ImagenesArticulos/","");
+                        var NombreImagen = nombreImagenBorrada.Replace($"{NavigationManager.BaseUri}ImagenesArticulos/", "");
                         var Resultado = SubidaArchivo.BorrarArchivo(NombreImagen);
                         await MyImagenArticuloRepositorio.BorrarArticuloImagenPorUrlImagen(nombreImagenBorrada);
                     }
@@ -118,7 +117,7 @@ namespace shopping.web.Pages.Articulos
             {
                 var ImagenIndex = ArticuloDto.UrlImagenes.FindIndex(x => x == urlImagen);
                 var NombreImagen = urlImagen.Replace($"{NavigationManager.BaseUri}ImagenesArticulos/", "");
-                
+
                 NombresImagenesBorradas ??= new List<string>();
                 NombresImagenesBorradas.Add(urlImagen);
 

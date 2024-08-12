@@ -1,9 +1,40 @@
 ﻿@page "/"
+@using shopping.web.Interfaces
 
-<PageTitle>Index</PageTitle>
+@inject IArticuloRepositorio MyArticuloRepositorio
 
-<h1>Hello, world!</h1>
+<PageTitle>Inicio</PageTitle>
 
-Welcome to your new app.
+<h1 class="text-center">Últimos articulos</h1>
 
-<SurveyPrompt Title="How is Blazor working for you?" />
+<div class="row">
+    @foreach (var articulo in ArticuloDtos)
+    {
+        @if (articulo.Activo)
+        {
+            <div class="col-lg-3 col-sm-12 mt-3">
+                <div class="card">
+                    <div class="card-header" style="background-color:lightgray">
+                        <h3>@articulo.Nombre</h3>
+                    </div>
+                    <div class="card-body">
+                        @if (articulo.ImagenArticulo.Count > 0)
+                        {
+                            @foreach (var imagen in articulo.ImagenArticulo.Take(1))
+                            {
+                                <img src="@imagen.UrlImagenArticulo" class="img-fluid" />
+                            }
+                        }
+                        else
+                        {
+                            <img src="~/imagenes/no-image.png" class="img-fluid" />
+                        }
+                    </div>
+                    <div class="card-footer" style="background-color:lightgray">
+                        <NavLink href="@($"detalle-articulo/{articulo.ArticuloId}")"> Mas informacion... </NavLink>
+                    </div>
+                </div>
+            </div>
+        }
+    }
+</div>
